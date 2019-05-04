@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>@ViewBag.Title</title>
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+    @Styles.Render("~/StylesBundle")
+    @RenderSection("PageStyles", false)
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse w-100 order-1 order-md-0 dual-collapse2" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item nav-list-item">
+                        <a class="nav-link" href="@Url.Action("Index", "Default")">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                }
+                <li class="nav-item nav-list-item">
+                    <a class="nav-link" href="@Url.Action("FareQuery", "Default")">Fare Query</a>
+                </li>
+                <li class="nav-item nav-list-item">
+                    <a class="nav-link" href="@Url.Action("CheckSchedule", "Default")">Check Schedule</a>
+                </li>
+                <li class="nav-item nav-list-item">
+                    <a class="nav-link" href="@Url.Action("PurchaseTicket", "User")">Purchase Ticket</a>
+                </li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item nav-list-item">
+                        <a class="nav-link" href="@Url.Action("PurchaseHistory", "User")">Purchase History</a>
+                    </li>
+                }
+            </ul>
+            <ul class="navbar-nav" style="float: right">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user"></i> @HttpContext.Current.User.Identity.Name
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="@Url.Action("EditPersonal", "User")">Edit personal details</a>
+                            <a class="dropdown-item" href="@Url.Action("ChangePassword", "User")">Change password</a>
+                            <a class="dropdown-item" href="@Url.Action("LogOut", "User")">Log out</a>
+                        </div>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item nav-list-item">
+                        <a class="nav-link" href="@Url.Action("Login", "User")">Login</a>
+                    </li>
+                    <li class="nav-item nav-list-item">
+                        <a class="nav-link" href="@Url.Action("Register", "User")">Register</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </nav>
+
+    @RenderBody()
+</body>
+@Scripts.Render("~/ScriptsBundle")
+@RenderSection("PageScripts", false)
+</html>

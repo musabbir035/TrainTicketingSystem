@@ -1,4 +1,4 @@
-namespace TrainTicket.Core.Domain
+namespace TrainTicketingSystem.Core.Domain
 {
     public partial class Train
     {

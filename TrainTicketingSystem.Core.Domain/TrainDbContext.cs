@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 
-namespace TrainTicket.Core.Domain
+namespace TrainTicketingSystem.Core.Domain
 {
     public class TrainDbContext : DbContext
     {
