@@ -123,13 +123,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Images\bg.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-confirm.js" />
+    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\select2.full.js" />
     <Content Include="Styles\bootstrap.css" />
     <Content Include="Styles\jquery-confirm.css" />
+    <Content Include="Styles\jquery-ui.css" />
     <Content Include="Styles\mystyles.css" />
+    <Content Include="Styles\select2.css" />
     <Content Include="Styles\style.css" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -159,7 +164,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

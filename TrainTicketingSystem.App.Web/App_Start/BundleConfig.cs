@@ -15,7 +15,7 @@ namespace TrainTicketingSystem.App.Web.App_Start
             //CSS bundles
             StyleBundle styles = new StyleBundle("~/StylesBundle");
             styles.Include("~/Styles/bootstrap.css");
-            styles.Include("~/Styles/style.css");
+            styles.Include("~/Styles/mystyles.css");
             bundles.Add(styles);
 
             StyleBundle loginRegisterStyles = new StyleBundle("~/LoginRegisterStylesBundle");

@@ -4,5 +4,95 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>PurcaseTicket</h2>
+@section PageStyles {
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" rel="stylesheet" />
+}
+<div id="booking" class="section">
+    <div class="section-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                </div>
+                <div class="col-md-7 col-md-offset-1">
+                    <div class="main-box">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <span class="form-label">Station from</span>
+                                    @{
+                                        List<SelectListItem> listItems = new List<SelectListItem>();
+                                        foreach (var item in ViewBag.SourceStations)
+                                        {
+                                            listItems.Add(new SelectListItem
+                                            {
+                                                Text = item.Name,
+                                                Value = item.Id.ToString()
+                                            });
+                                        }
+                                    }
+                                    @Html.DropDownList("Source", listItems, "-- Select Source Station --", new { @class = "form-control", @id = "Source" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <span class="form-label">Station to</span>
+                                    <select class="form-control" id="Destination" name="Destination">
+                                        <option value="">-- Select Destination Station --</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <span class="form-label">Date</span>
+                                    <input type="text" class="form-control datepicker" data-date-start-date="0d" id="Date" name="Date" placeholder="Select date">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <span class="form-label">Class</span>
+                                    <select class="form-control" id="TicketClass" name="TicketClass">
+                                        <option value="">-- Select Class --</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-btn">
+                            <button class="submit-btn">Proceed</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+@section PageScripts {
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript">
+        $('.datepicker').datepicker();
+
+        var source = "";
+        var destination = "";
+        var train = "";
+        var ticketClass = "";
+        $('#Source').on('change', function () {
+            source = this.value;
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetDestinationList")',
+                dataType: 'json',
+                data: { id: source },
+                success: function (data) {
+                    $("#Destination").html("<option value=''>-- Select Destination Station --</option>");
+                    var items = '';
+                    $.each(data, function (i, item) {
+                        $("#Destination").append(
+                            $('<option></option>').val(item.Id).text(item.Name));
+                    });
+                }
+            });
+        });
+    </script>
+}

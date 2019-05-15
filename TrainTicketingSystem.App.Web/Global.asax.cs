@@ -36,9 +36,9 @@ namespace TrainTicketingSystem.App.Web
             container.RegisterType<IRepository<Route>, Repository<Route>>();
             container.RegisterType<IRepository<Station>, Repository<Station>>();
             container.RegisterType<IUserService, UserService>();
-            /*container.RegisterType<ITicketService, TicketService>();
             container.RegisterType<IRouteService, RouteService>();
             container.RegisterType<IStationService, StationService>();
+            /*container.RegisterType<ITicketService, TicketService>();
             container.RegisterType<ITrainService, TrainService>();*/
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
