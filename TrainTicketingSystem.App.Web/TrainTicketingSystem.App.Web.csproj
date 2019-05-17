@@ -150,6 +150,7 @@
     </Compile>
     <Compile Include="Models\LoginVM.cs" />
     <Compile Include="Models\PurchaseTicketVM.cs" />
+    <Compile Include="Models\RegisterVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -157,9 +158,10 @@
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Default\Index.cshtml" />
-    <Content Include="Views\Default\PurcaseTicket.cshtml" />
+    <Content Include="Views\Default\PurchaseTicket.cshtml" />
     <Content Include="Views\Default\FareQuery.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

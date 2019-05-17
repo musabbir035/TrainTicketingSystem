@@ -27,7 +27,7 @@ namespace TrainTicketingSystem.App.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult PurcaseTicket()
+        public ActionResult PurchaseTicket()
         {
             List<Station> sourceStations = routeService.GetAllSourceStations().ToList();
             ViewBag.SourceStations = sourceStations;
@@ -43,7 +43,7 @@ namespace TrainTicketingSystem.App.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult PurcaseTicket(PurchaseTicketVM model)
+        public ActionResult PurchaseTicket(PurchaseTicketVM model)
         {
             List<Station> sourceStations = routeService.GetAllSourceStations().ToList();
             ViewBag.SourceStations = sourceStations;

@@ -1,6 +1,6 @@
-﻿@model TrainTicketingSystem.App.Web.Models.LoginVM
+﻿@model TrainTicketingSystem.App.Web.Models.RegisterVM
 @{
-    ViewBag.Title = "Login";
+    ViewBag.Title = "Register";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-md-6 col-sm-12 col-md-offset-1">
                     <div class="main-box">
-                        @using (Html.BeginForm(null, null, FormMethod.Post, new { @id = "LoginForm" }))
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { @id = "RegisterForm" }))
                         {
                             @Html.AntiForgeryToken()
                             <div class="row">
@@ -29,11 +29,26 @@
                                         @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Enter password" })
                                         @Html.ValidationMessageFor(model => model.Password, null, new { @class = "text-danger" })
                                     </div>
+                                    <div class="form-group">
+                                        <span class="form-label">Repeat password</span>
+                                        @Html.PasswordFor(m => m.RepeatPassword, new { @class = "form-control", @placeholder = "Enter password again" })
+                                        @Html.ValidationMessageFor(model => model.RepeatPassword, null, new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <span class="form-label">Name</span>
+                                        @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter your name" } })
+                                        @Html.ValidationMessageFor(model => model.Name, null, new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <span class="form-label">Mobile number</span>
+                                        @Html.EditorFor(m => m.MobileNo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter your mobile number" } })
+                                        @Html.ValidationMessageFor(model => model.MobileNo, null, new { @class = "text-danger" })
+                                    </div>
                                     <p class="text-danger" style="text-align: center">@ViewBag.Error</p>
                                     <div class="form-btn">
-                                        <button class="submit-btn" id="SubmitBtn">Log in</button>
+                                        <button class="submit-btn" id="SubmitBtn">Register</button>
                                     </div>
-                                    <a href="@Url.Action("Register", "User")">Don't have an account?</a>
+                                    <a href="@Url.Action("Login", "User")">Already have an account?</a>
                                 </div>
                             </div>
                         }
