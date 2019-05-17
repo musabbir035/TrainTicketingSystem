@@ -127,9 +127,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-confirm.js" />
-    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\select2.full.js" />
     <Content Include="Styles\bootstrap.css" />
     <Content Include="Styles\jquery-confirm.css" />
     <Content Include="Styles\jquery-ui.css" />
