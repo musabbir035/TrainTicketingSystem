@@ -1,4 +1,4 @@
-﻿
+﻿@model TrainTicketingSystem.App.Web.Models.PurchaseTicketVM
 @{
     ViewBag.Title = "PurcaseTicket";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,56 +11,49 @@
     <div class="section-center">
         <div class="container">
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-6 col-sm-12">
+                    <h4>Train Ticket</h4>
+                    <h1>Book Your Tickets<br>Today</h1>
                 </div>
-                <div class="col-md-7 col-md-offset-1">
+                <div class="col-md-6 col-sm-12 col-md-offset-1">
                     <div class="main-box">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <span class="form-label">Station from</span>
-                                    @{
-                                        List<SelectListItem> listItems = new List<SelectListItem>();
-                                        foreach (var item in ViewBag.SourceStations)
-                                        {
-                                            listItems.Add(new SelectListItem
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { @id = "PurchaseTicketForm"}))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <span class="form-label">Station from</span>
+                                        @{
+                                            List<SelectListItem> listItems = new List<SelectListItem>();
+                                            foreach (var item in ViewBag.SourceStations)
                                             {
-                                                Text = item.Name,
-                                                Value = item.Id.ToString()
-                                            });
+                                                listItems.Add(new SelectListItem
+                                                {
+                                                    Text = item.Name,
+                                                    Value = item.Id.ToString()
+                                                });
+                                            }
                                         }
-                                    }
-                                    @Html.DropDownList("Source", listItems, "-- Select Source Station --", new { @class = "form-control", @id = "Source" })
+                                        @Html.DropDownListFor(m => m.Source, listItems, "-- Select Source Station --", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Source, null, new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <span class="form-label">Station to</span>
+                                        @Html.DropDownListFor(m => m.Destination, Enumerable.Empty<SelectListItem>(), "-- Select Destination Station --", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Destination, null, new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <span class="form-label">Date</span>
+                                        @Html.EditorFor(m => m.Date, new { htmlAttributes = new { @class = "form-control datepicker", @data_date_start_date = "0d", @placeholder = "Select date" } })
+                                        @Html.ValidationMessageFor(model => model.Date, null, new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-btn">
+                                        <button class="submit-btn" id="SubmitBtn">Proceed</button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <span class="form-label">Station to</span>
-                                    <select class="form-control" id="Destination" name="Destination">
-                                        <option value="">-- Select Destination Station --</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <span class="form-label">Date</span>
-                                    <input type="text" class="form-control datepicker" data-date-start-date="0d" id="Date" name="Date" placeholder="Select date">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <span class="form-label">Class</span>
-                                    <select class="form-control" id="TicketClass" name="TicketClass">
-                                        <option value="">-- Select Class --</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-btn">
-                            <button class="submit-btn">Proceed</button>
-                        </div>
+                         }
                     </div>
                 </div>
             </div>
@@ -71,6 +64,13 @@
 @section PageScripts {
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
     <script type="text/javascript">
+        /*$("#PurchaseTicketForm").submit(function (e) { // note that it's better to use form Id to select form
+            if ($("#Source").val() == "" || $("#Destination").val() == "" || $("#Date").val() == "") // here you check your drop down selected value
+            {
+                e.preventDefault(); // here you stop submitting form
+            }
+        });*/
+
         $('.datepicker').datepicker();
 
         var source = "";
@@ -93,6 +93,13 @@
                     });
                 }
             });
+        });
+
+        
+        $("#SubmitBtn").click(function () {
+            if ($("#Source").value == "") {
+                $("#SourceErr").html("Please select source station.");
+            }
         });
     </script>
 }
