@@ -6,6 +6,7 @@ namespace TrainTicketingSystem.Core.Service.Interface
     {
         User GetUserByEmail(string email);
         bool UserLogin(string email, string password);
+        bool UserRegister(User user);
         string ChangePassword(string email, string currentPassword, string newPassword, string repeatNewPassword);
     }
 }

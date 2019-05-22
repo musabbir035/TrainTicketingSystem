@@ -46,6 +46,26 @@ namespace TrainTicketingSystem.Core.Service
             }
         }
 
+        public bool UserRegister(User user)
+        {
+            try
+            {
+                if (GetUserByEmail(user.Email) == null)
+                {
+                    Insert(user);
+                    return true;
+                }
+                else
+                {
+                    throw new Exception("Email already in use.");
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong! Error message = " + e.Message);
+            }
+        }
+
         public string ChangePassword(string email, string currentPassword, string newPassword, string repeatNewPassword)
         {
             if (newPassword.Length < 6 || newPassword.Length > 100)

@@ -88,7 +88,7 @@ namespace TrainTicketingSystem.App.Web.Controllers
                         JoinDate = DateTime.Now,
                         UpdateDate = DateTime.Now,
                     };
-                    userService.Insert(user);
+                    userService.UserRegister(user);
                     return RedirectToAction("Index");
                 }
             }
