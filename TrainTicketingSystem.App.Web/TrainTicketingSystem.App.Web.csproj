@@ -146,6 +146,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\IndexVM.cs" />
     <Compile Include="Models\LoginVM.cs" />
     <Compile Include="Models\PurchaseTicketVM.cs" />
     <Compile Include="Models\RegisterVM.cs" />
@@ -160,6 +161,7 @@
     <Content Include="Views\Default\FareQuery.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

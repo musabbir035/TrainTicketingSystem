@@ -1,0 +1,109 @@
+﻿@model TrainTicketingSystem.App.Web.Models.IndexVM
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="booking" class="section">
+    <div class="section-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-md-offset-1">
+                    <div class="main-box">
+                        <div class="row">
+                            <div class="col-md-10 col-lg-10 col-sm-10 col-xs-12">
+                                <h3>Account Information</h3>
+                            </div>
+                            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-12">
+                                <a class="btn btn-primary btn-xs edit-btn" href="@Url.Action("EditPersonal", "User")">Edit</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="personal-info">
+                                    <tr>
+                                        <td>
+                                            <p>Name:</p>
+                                        </td>
+                                        <td>
+                                            <p>@Model.User.Name</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Email:</p>
+                                        </td>
+                                        <td>
+                                            <p>@Model.User.Email</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Mobile no:</p>
+                                        </td>
+                                        <td>
+                                            <p>@Model.User.MobileNo</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Member since:</p>
+                                        </td>
+                                        <td>
+                                            <p>@Model.User.JoinDate.ToString("MMMM dd, yyyy")</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main-box" style="margin-top: 20px">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>Recent Purchases</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                @if (Model.Tickets == null)
+                                {
+                                    <p>No purchase history available.</p>
+                                }
+                                else
+                                {
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tr>
+                                                <td>Train id</td>
+                                                <td>Journey date</td>
+                                                <td>From</td>
+                                                <td>To</td>
+                                                <td>Compartment</td>
+                                                <td>Seat no</td>
+                                                <td>Purchase date</td>
+                                            </tr>
+                                            @foreach (var v in Model.Tickets)
+                                            {
+                                                <tr>
+                                                    <td>@v.TrainId</td>
+                                                    <td>@v.JourneyDate</td>
+                                                    <td>@v.SourceId</td>
+                                                    <td>@v.DestinationId</td>
+                                                    <td>@v.Compartment</td>
+                                                    <td>@v.Seats</td>
+                                                    <td>@v.PurchaseDate</td>
+                                                </tr>
+                                            }
+                                        </table>
+                                        <a style="float: right; text-decoration: none" href="history.html">See history</a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

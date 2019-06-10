@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainTicketingSystem.Core.Domain;
+using TrainTicketingSystem.Core.Domain.Custom_Models;
 using TrainTicketingSystem.Core.Repository.Interface;
 using TrainTicketingSystem.Core.Service.Interface;
 
@@ -20,61 +21,105 @@ namespace TrainTicketingSystem.Core.Service
             return GetAll().Where(e => e.Email == email).SingleOrDefault();
         }
 
-        public bool UserLogin(string email, string password)
+        public ErrorHandler UserLogin(string email, string password)
         {
             User user = new User();
             try
             {
                 user = GetUserByEmail(email);
+                if (user == null)
+                {
+                    return new ErrorHandler
+                    {
+                        IsError = true,
+                        Message = "No user found with the provided email.",
+                        ExceptionMessage = null
+                    };
+                }
+                else if (user.Password == password)
+                {
+                    return new ErrorHandler
+                    {
+                        IsError = false,
+                        Message = null,
+                        ExceptionMessage = null
+                    };
+                }
+                else
+                {
+                    return new ErrorHandler
+                    {
+                        IsError = true,
+                        Message = "Email and password does not match.",
+                        ExceptionMessage = null
+                    };
+                }
             }
             catch (Exception e)
             {
-                throw new Exception("Something went wrong.");
-            }
-
-            if (user == null)
-            {
-                throw new Exception("No user found with your provided email.");
-            }
-            else if (user.Password == password)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
+                return new ErrorHandler
+                {
+                    IsError = true,
+                    Message = "Something went wrong! We are Sorry for your inconvenience.",
+                    ExceptionMessage = e.Message
+                };
             }
         }
 
-        public bool UserRegister(User user)
+        public ErrorHandler UserRegister(User user)
         {
             try
             {
                 if (GetUserByEmail(user.Email) == null)
                 {
                     Insert(user);
-                    return true;
+                    return new ErrorHandler
+                    {
+                        IsError = false,
+                        Message = null,
+                        ExceptionMessage = null
+                    };
                 }
                 else
                 {
-                    throw new Exception("Email already in use.");
+                    return new ErrorHandler
+                    {
+                        IsError = true,
+                        Message = "Email already in use.",
+                        ExceptionMessage = null
+                    };
                 }
             }
             catch (Exception e)
             {
-                throw new Exception("Something went wrong! Error message = " + e.Message);
+                return new ErrorHandler
+                {
+                    IsError = true,
+                    Message = "Something went wrong! We are Sorry for your inconvenience.",
+                    ExceptionMessage = e.Message
+                };
             }
         }
 
-        public string ChangePassword(string email, string currentPassword, string newPassword, string repeatNewPassword)
+        public ErrorHandler ChangePassword(string email, string currentPassword, string newPassword, string repeatNewPassword)
         {
             if (newPassword.Length < 6 || newPassword.Length > 100)
             {
-                return "Password length must be between 6 & 100 characters.";
+                return new ErrorHandler
+                {
+                    IsError = true,
+                    Message = "Password length must be between 6 & 100 characters.",
+                    ExceptionMessage = null
+                };
             }
             else if (currentPassword == newPassword)
             {
-                return "New password is same as old password. Please enter a new one.";
+                return new ErrorHandler
+                {
+                    IsError = true,
+                    Message = "New password is same as old password. Please enter a new one.",
+                    ExceptionMessage = null
+                };
             }
             else if (newPassword == repeatNewPassword)
             {
@@ -82,34 +127,46 @@ namespace TrainTicketingSystem.Core.Service
                 try
                 {
                     user = GetUserByEmail(email);
-                }
-                catch (Exception e)
-                {
-                    return "Something went wrong.";
-                }
-
-                if (currentPassword == user.Password)
-                {
-                    try
+                    if (currentPassword == user.Password)
                     {
                         user.Password = newPassword;
                         Update(user);
                         repo.Save();
-                        return "Password changed succesfully.";
+                        return new ErrorHandler
+                        {
+                            IsError = false,
+                            Message = "Password changed succesfully.",
+                            ExceptionMessage = null
+                        };
                     }
-                    catch (Exception e)
+                    else
                     {
-                        return "Something went wrong.";
+                        return new ErrorHandler
+                        {
+                            IsError = true,
+                            Message = "Wrong current password.",
+                            ExceptionMessage = null
+                        };
                     }
                 }
-                else
+                catch (Exception e)
                 {
-                    return "Wrong current password.";
+                    return new ErrorHandler
+                    {
+                        IsError = true,
+                        Message = "Something went wrong! We are Sorry for your inconvenience.",
+                        ExceptionMessage = e.Message
+                    };
                 }
             }
             else
             {
-                return "New passwords do not match.";
+                return new ErrorHandler
+                {
+                    IsError = true,
+                    Message = "New passwords do not match.",
+                    ExceptionMessage = null
+                };
             }
         }
     }

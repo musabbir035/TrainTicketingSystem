@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using TrainTicketingSystem.App.Web.Models;
 using TrainTicketingSystem.Core.Domain;
+using TrainTicketingSystem.Core.Domain.Custom_Models;
 using TrainTicketingSystem.Core.Service.Interface;
 
 namespace TrainTicketingSystem.App.Web.Controllers
@@ -22,7 +23,14 @@ namespace TrainTicketingSystem.App.Web.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            return View();
+            User user = userService.GetUserByEmail(System.Web.HttpContext.Current.User.Identity.Name);
+            //List<Ticket> tickets = ticketService.GetTicketsByUserEmail(user.Email).ToList();
+            IndexVM model = new IndexVM
+            {
+                User = user,
+                Tickets = null,
+            };
+            return View(model);
         }
 
         [HttpGet]
@@ -43,20 +51,23 @@ namespace TrainTicketingSystem.App.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if (userService.UserLogin(model.Email, model.Password))
+                    ErrorHandler handler = userService.UserLogin(model.Email, model.Password);
+                    if (!handler.IsError)
                     {
                         FormsAuthentication.SetAuthCookie(model.Email, false);
                         return RedirectToAction("Index");
                     }
                     else
                     {
-                        ViewBag.Error = "Email and password does not match.";
+                        ViewBag.Error = handler.Message;
+                        ViewBag.Exception = handler.ExceptionMessage;
                     }
                 }
             }
             catch (Exception e)
             {
                 ViewBag.Error = "Something went wrong! We are Sorry for your inconvenience.";
+                ViewBag.Exception = e.Message;
             }
             return View(model);
         }
@@ -88,8 +99,16 @@ namespace TrainTicketingSystem.App.Web.Controllers
                         JoinDate = DateTime.Now,
                         UpdateDate = DateTime.Now,
                     };
-                    userService.UserRegister(user);
-                    return RedirectToAction("Index");
+                    ErrorHandler handler = userService.UserRegister(user);
+                    if (!handler.IsError)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Error = handler.Message;
+                        ViewBag.Exception = handler.ExceptionMessage;
+                    }
                 }
             }
             catch (Exception e)
