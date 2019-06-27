@@ -124,5 +124,19 @@ namespace TrainTicketingSystem.App.Web.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
         }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        public JsonResult ChangePasswordAjax(string curPass, string newPass, string repNewPass)
+        {
+            ErrorHandler handler = new ErrorHandler();
+            handler = userService.ChangePassword(System.Web.HttpContext.Current.User.Identity.Name, curPass, newPass, repNewPass);
+            return Json(handler.Message, JsonRequestBehavior.AllowGet);
+        }
     }
 }
