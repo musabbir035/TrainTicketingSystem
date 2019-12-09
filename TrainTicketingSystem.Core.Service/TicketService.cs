@@ -4,9 +4,9 @@ using TrainTicketingSystem.Core.Service.Interface;
 
 namespace TrainTicketingSystem.Core.Service
 {
-    public class RouteService : Service<Route>, IRouteService
+    public class TicketService : Service<Ticket>, ITicketService
     {
-        public RouteService(IRepository<Route> repo) : base(repo)
+        public TicketService(IRepository<Ticket> repo) : base(repo)
         { }
     }
 }

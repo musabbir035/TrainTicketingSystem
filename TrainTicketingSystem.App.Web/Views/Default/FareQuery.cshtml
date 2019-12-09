@@ -4,5 +4,164 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>FareQuery</h2>
+<div id="booking" class="section">
+    <div class="section-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-md-offset-1">
+                    <div class="main-box">
+                        <h3>Fare Query</h3>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <span class="form-label">Station from</span>
+                                            @{
+                                                List<SelectListItem> listItems = new List<SelectListItem>();
+                                                foreach (var item in ViewBag.SourceStations)
+                                                {
+                                                    listItems.Add(new SelectListItem
+                                                    {
+                                                        Text = item.Name,
+                                                        Value = item.Id.ToString()
+                                                    });
+                                                }
+                                            }
+                                            @Html.DropDownList("Source", listItems, "-- Select Source Station --", new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <span class="form-label">Station to</span>
+                                            <select class="form-control" id="Destination" name="Destination">
+                                                <option value="">-- Select Destination Station --</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <span class="form-label">Train</span>
+                                            <select class="form-control" id="Train" name="Train">
+                                                <option value="">-- Select Train --</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <span class="form-label">Class</span>
+                                            <select class="form-control" id="TicketClass" name="TicketClass">
+                                                <option value="">-- Select Class --</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-btn">
+                                    <button class="submit-btn" Id="ShowFare">Show fare</button>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 fare-result" style="border: 2px solid rgba(0, 0, 0, .2);">
+                                <div class="cl-md-12" id="ShowFareDiv">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+@section PageScripts
+{
+    <script>
+        $(document).ready(function () {
+            var source = "";
+            var destination = "";
+            var train = "";
+            var ticketClass = "";
+            $('#Source').on('change', function () {
+                source = this.value;
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetDestinationList")',
+                    dataType: 'json',
+                    data: { id: source },
+                    success: function (data) {
+                        $("#Destination").html("<option value=''>-- Select Destination Station --</option>");
+                        var items = '';
+                        $.each(data, function (i, item) {
+                            $("#Destination").append(
+                                $('<option></option>').val(item.Id).text(item.Name));
+                        });
+                    }
+                });
+            });
+
+            $('#Destination').on('change', function () {
+                destination = this.value;
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetTrainList")',
+                    dataType: 'json',
+                    data: { sourceId: source, destinationId: destination },
+                    success: function (data) {
+                        $("#Train").html("<option value=''>-- Select Train --</option>");
+                        var items = '';
+                        $.each(data, function (i, item) {
+                            $("#Train").append(
+                                $('<option></option>').val(item.Id).text(item.Name));
+                        });
+                    }
+                });
+            });
+
+            $('#Train').on('change', function () {
+                train = this.value;
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetClass")',
+                    dataType: 'json',
+                    data: { trainId: train, sourceId: source, destinationId: destination },
+                    success: function (data) {
+                        $("#Class").html("<option value=''>-- Select Class --</option>");
+                        var items = '';
+                        $.each(data, function (i, item) {
+                            $("#TicketClass").append(
+                                $('<option></option>').val(item).text(item));
+                        });
+                    }
+                });
+            });
+
+            $('#TicketClass').on('change', function () {
+                ticketClass = this.value;
+            })
+
+            $('#ShowFare').on('click', function () {
+                if (source == "" | destination == "" | train == "" | ticketClass == "") {
+                    alert("Please fill up the form correctly.");
+                }
+                else {
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("GetFare")',
+                        dataType: 'json',
+                        data: { trainId: train, sourceId: source, destinationId: destination, ticketClass: ticketClass },
+                        success: function (data) {
+                            $("#ShowFareDiv").html("<p>" + $('#Source option:selected').text() + " to " + $('#Destination option:selected').text() + "</p>" +
+                                "<p>" + $('#Train option:selected').text() + "</p>" +
+                                "<p>" + ticketClass + " Fare: " + data);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}

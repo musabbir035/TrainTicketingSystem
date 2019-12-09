@@ -1,3 +1,6 @@
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace TrainTicketingSystem.Core.Domain
 {
     public partial class Route
@@ -6,16 +9,16 @@ namespace TrainTicketingSystem.Core.Domain
         public int TrainId { get; set; }
         public int SourceId { get; set; }
         public int DestinationId { get; set; }
-        public System.TimeSpan SourceDepartureTime { get; set; }
-        public System.TimeSpan DestinationArrivalTime { get; set; }
-        public int AcBerth { get; set; }
-        public int AcSeat { get; set; }
-        public int AcChair { get; set; }
-        public int FcBerth { get; set; }
-        public int FcSeat { get; set; }
-        public int FcChair { get; set; }
-        public int ShovonChair { get; set; }
-        public int Shovon { get; set; }
+        public TimeSpan SourceDepartureTime { get; set; }
+        public TimeSpan DestinationArrivalTime { get; set; }
+        public int AcBerthSeats { get; set; }
+        public int AcSeatSeats { get; set; }
+        public int AcChairSeats { get; set; }
+        public int FcBerthSeats { get; set; }
+        public int FcSeatSeats { get; set; }
+        public int FcChairSeats { get; set; }
+        public int ShovonChairSeats { get; set; }
+        public int ShovonSeats { get; set; }
         public int AcBerthFare { get; set; }
         public int AcSeatFare { get; set; }
         public int AcChairFare { get; set; }
@@ -24,5 +27,9 @@ namespace TrainTicketingSystem.Core.Domain
         public int FcChairFare { get; set; }
         public int ShovonChairFare { get; set; }
         public int ShovonFare { get; set; }
+
+        public Train Train { get; set; }
+        [ForeignKey("SourceId")]
+        public Station Station { get; set; }
     }
 }

@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace TrainTicketingSystem.Core.Domain
 {
     public partial class Ticket
@@ -7,9 +11,16 @@ namespace TrainTicketingSystem.Core.Domain
         public int TrainId { get; set; }
         public int SourceId { get; set; }
         public int DestinationId { get; set; }
-        public System.DateTime JourneyDate { get; set; }
-        public string Compartment { get; set; }
-        public string Seats { get; set; }
-        public System.DateTime PurchaseDate { get; set; }
+        public DateTime JourneyDate { get; set; }
+        public DateTime PurchaseDate { get; set; }
+
+        public ICollection<TicketSeat> TicketSeats { get; set; }
+
+        [ForeignKey("UserId")]
+        public User User { get; set; }
+        [ForeignKey("TrainId")]
+        public Train Train { get; set; }
+        [ForeignKey("SourceId")]
+        public Station Station { get; set; }
     }
 }

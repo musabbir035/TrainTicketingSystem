@@ -4,9 +4,9 @@ using TrainTicketingSystem.Core.Service.Interface;
 
 namespace TrainTicketingSystem.Core.Service
 {
-    public class RouteService : Service<Route>, IRouteService
+    class PasswordResetService : Service<PasswordReset>, IPasswordResetService
     {
-        public RouteService(IRepository<Route> repo) : base(repo)
+        public PasswordResetService(IRepository<PasswordReset> repo) : base(repo)
         { }
     }
 }

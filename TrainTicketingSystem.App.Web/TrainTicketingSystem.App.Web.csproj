@@ -158,11 +158,12 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Default\Index.cshtml" />
     <Content Include="Views\Default\PurchaseTicket.cshtml" />
-    <Content Include="Views\Default\FareQuery.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\ChangePassword.cshtml" />
+    <Content Include="Views\Default\FareQuery.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -172,28 +173,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TrainTicketingSystem.Core.Domain\TrainTicketingSystem.Core.Domain.csproj">
-      <Project>{210068FF-E829-483C-A39B-4078BEF70E61}</Project>
-      <Name>TrainTicketingSystem.Core.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TrainTicketingSystem.Core.Repository.Interface\TrainTicketingSystem.Core.Repository.Interface.csproj">
-      <Project>{2BF5964D-B18A-4819-91DD-9B382083060E}</Project>
-      <Name>TrainTicketingSystem.Core.Repository.Interface</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TrainTicketingSystem.Core.Repository\TrainTicketingSystem.Core.Repository.csproj">
-      <Project>{5CA568FB-9D0A-4EF4-A347-16BED69379B8}</Project>
-      <Name>TrainTicketingSystem.Core.Repository</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TrainTicketingSystem.Core.Service.Interface\TrainTicketingSystem.Core.Service.Interface.csproj">
-      <Project>{CA9ECAA5-CD5A-4C44-ADD2-B301E93B6312}</Project>
-      <Name>TrainTicketingSystem.Core.Service.Interface</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TrainTicketingSystem.Core.Service\TrainTicketingSystem.Core.Service.csproj">
-      <Project>{BCFEE73B-0FB0-4F14-8DE9-3A0CCFF35C29}</Project>
-      <Name>TrainTicketingSystem.Core.Service</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

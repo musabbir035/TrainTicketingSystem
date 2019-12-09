@@ -1,23 +1,27 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.421
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{08C6A257-52F0-461F-8BDD-A8F49699B966}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainTicketingSystem.Core.Domain", "TrainTicketingSystem.Core.Domain\TrainTicketingSystem.Core.Domain.csproj", "{210068FF-E829-483C-A39B-4078BEF70E61}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainTicketingSystem.Core.Repository.Interface", "TrainTicketingSystem.Core.Repository.Interface\TrainTicketingSystem.Core.Repository.Interface.csproj", "{2BF5964D-B18A-4819-91DD-9B382083060E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainTicketingSystem.Core.Repository", "TrainTicketingSystem.Core.Repository\TrainTicketingSystem.Core.Repository.csproj", "{5CA568FB-9D0A-4EF4-A347-16BED69379B8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainTicketingSystem.Core.Service.Interface", "TrainTicketingSystem.Core.Service.Interface\TrainTicketingSystem.Core.Service.Interface.csproj", "{CA9ECAA5-CD5A-4C44-ADD2-B301E93B6312}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainTicketingSystem.Core.Service", "TrainTicketingSystem.Core.Service\TrainTicketingSystem.Core.Service.csproj", "{BCFEE73B-0FB0-4F14-8DE9-3A0CCFF35C29}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{433F5A58-442E-4417-8596-F15F1A033F55}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainTicketingSystem.App.Web", "TrainTicketingSystem.App.Web\TrainTicketingSystem.App.Web.csproj", "{ACB78601-579A-457E-B2F5-E3F0CF1BBD1D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrainTicketingSystem.Core.Domain", "TrainTicketingSystem.Core.Domain\TrainTicketingSystem.Core.Domain.csproj", "{A9A51991-1F4A-41AF-9C1C-161999D066BC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{86715495-EABE-4F91-BEB3-C58BBE80E258}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainTicketingSystem.Infrastructure", "TrainTicketingSystem.Infrastructure\TrainTicketingSystem.Infrastructure.csproj", "{EAEE7D78-C518-4EC5-A90E-E8AB583DFB1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainTicketingSystem.Core.Repository.Interface", "TrainTicketingSystem.Core.Repository.Interface\TrainTicketingSystem.Core.Repository.Interface.csproj", "{B5EDA946-E149-4C44-BF70-ACA608D0A163}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainTicketingSystem.Core.Repository", "TrainTicketingSystem.Core.Repository\TrainTicketingSystem.Core.Repository.csproj", "{71EB04B0-C506-496F-9A28-31C871736A3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainTicketingSystem.Core.Service.Interface", "TrainTicketingSystem.Core.Service.Interface\TrainTicketingSystem.Core.Service.Interface.csproj", "{E66CF7F2-28D3-4F0A-8620-7E1ACE511A65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainTicketingSystem.Core.Service", "TrainTicketingSystem.Core.Service\TrainTicketingSystem.Core.Service.csproj", "{C4BCA541-E282-4C47-AFFB-C859971F5688}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,41 +29,46 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{210068FF-E829-483C-A39B-4078BEF70E61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{210068FF-E829-483C-A39B-4078BEF70E61}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{210068FF-E829-483C-A39B-4078BEF70E61}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{210068FF-E829-483C-A39B-4078BEF70E61}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2BF5964D-B18A-4819-91DD-9B382083060E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2BF5964D-B18A-4819-91DD-9B382083060E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2BF5964D-B18A-4819-91DD-9B382083060E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2BF5964D-B18A-4819-91DD-9B382083060E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5CA568FB-9D0A-4EF4-A347-16BED69379B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5CA568FB-9D0A-4EF4-A347-16BED69379B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5CA568FB-9D0A-4EF4-A347-16BED69379B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5CA568FB-9D0A-4EF4-A347-16BED69379B8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CA9ECAA5-CD5A-4C44-ADD2-B301E93B6312}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CA9ECAA5-CD5A-4C44-ADD2-B301E93B6312}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CA9ECAA5-CD5A-4C44-ADD2-B301E93B6312}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CA9ECAA5-CD5A-4C44-ADD2-B301E93B6312}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BCFEE73B-0FB0-4F14-8DE9-3A0CCFF35C29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BCFEE73B-0FB0-4F14-8DE9-3A0CCFF35C29}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BCFEE73B-0FB0-4F14-8DE9-3A0CCFF35C29}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BCFEE73B-0FB0-4F14-8DE9-3A0CCFF35C29}.Release|Any CPU.Build.0 = Release|Any CPU
 		{ACB78601-579A-457E-B2F5-E3F0CF1BBD1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ACB78601-579A-457E-B2F5-E3F0CF1BBD1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACB78601-579A-457E-B2F5-E3F0CF1BBD1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACB78601-579A-457E-B2F5-E3F0CF1BBD1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9A51991-1F4A-41AF-9C1C-161999D066BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9A51991-1F4A-41AF-9C1C-161999D066BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9A51991-1F4A-41AF-9C1C-161999D066BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9A51991-1F4A-41AF-9C1C-161999D066BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAEE7D78-C518-4EC5-A90E-E8AB583DFB1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAEE7D78-C518-4EC5-A90E-E8AB583DFB1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAEE7D78-C518-4EC5-A90E-E8AB583DFB1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAEE7D78-C518-4EC5-A90E-E8AB583DFB1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5EDA946-E149-4C44-BF70-ACA608D0A163}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5EDA946-E149-4C44-BF70-ACA608D0A163}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5EDA946-E149-4C44-BF70-ACA608D0A163}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5EDA946-E149-4C44-BF70-ACA608D0A163}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71EB04B0-C506-496F-9A28-31C871736A3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71EB04B0-C506-496F-9A28-31C871736A3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71EB04B0-C506-496F-9A28-31C871736A3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71EB04B0-C506-496F-9A28-31C871736A3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E66CF7F2-28D3-4F0A-8620-7E1ACE511A65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E66CF7F2-28D3-4F0A-8620-7E1ACE511A65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E66CF7F2-28D3-4F0A-8620-7E1ACE511A65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E66CF7F2-28D3-4F0A-8620-7E1ACE511A65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4BCA541-E282-4C47-AFFB-C859971F5688}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4BCA541-E282-4C47-AFFB-C859971F5688}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4BCA541-E282-4C47-AFFB-C859971F5688}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4BCA541-E282-4C47-AFFB-C859971F5688}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{210068FF-E829-483C-A39B-4078BEF70E61} = {08C6A257-52F0-461F-8BDD-A8F49699B966}
-		{2BF5964D-B18A-4819-91DD-9B382083060E} = {08C6A257-52F0-461F-8BDD-A8F49699B966}
-		{5CA568FB-9D0A-4EF4-A347-16BED69379B8} = {08C6A257-52F0-461F-8BDD-A8F49699B966}
-		{CA9ECAA5-CD5A-4C44-ADD2-B301E93B6312} = {08C6A257-52F0-461F-8BDD-A8F49699B966}
-		{BCFEE73B-0FB0-4F14-8DE9-3A0CCFF35C29} = {08C6A257-52F0-461F-8BDD-A8F49699B966}
 		{ACB78601-579A-457E-B2F5-E3F0CF1BBD1D} = {433F5A58-442E-4417-8596-F15F1A033F55}
+		{A9A51991-1F4A-41AF-9C1C-161999D066BC} = {08C6A257-52F0-461F-8BDD-A8F49699B966}
+		{EAEE7D78-C518-4EC5-A90E-E8AB583DFB1C} = {86715495-EABE-4F91-BEB3-C58BBE80E258}
+		{B5EDA946-E149-4C44-BF70-ACA608D0A163} = {08C6A257-52F0-461F-8BDD-A8F49699B966}
+		{71EB04B0-C506-496F-9A28-31C871736A3B} = {08C6A257-52F0-461F-8BDD-A8F49699B966}
+		{E66CF7F2-28D3-4F0A-8620-7E1ACE511A65} = {08C6A257-52F0-461F-8BDD-A8F49699B966}
+		{C4BCA541-E282-4C47-AFFB-C859971F5688} = {08C6A257-52F0-461F-8BDD-A8F49699B966}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {27B9A1DB-4FD8-4D13-B6EB-2E5754A9E13B}

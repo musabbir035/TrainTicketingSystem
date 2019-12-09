@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 namespace TrainTicketingSystem.Core.Domain
 {
     public partial class User
@@ -7,7 +10,12 @@ namespace TrainTicketingSystem.Core.Domain
         public string Password { get; set; }
         public string Name { get; set; }
         public string MobileNo { get; set; }
-        public System.DateTime JoinDate { get; set; }
-        public System.DateTime UpdateDate { get; set; }
+        public int EmailValidated { get; set; }
+        public int MobileNoValidated { get; set; }
+        public DateTime JoinDate { get; set; }
+        public DateTime UpdateDate { get; set; }
+
+        public ICollection<Ticket> Tickets { get; set; }
+        public ICollection<LoginHistory> LoginHistories { get; set; }
     }
 }

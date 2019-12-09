@@ -89,7 +89,8 @@
                     var items = '';
                     $.each(data, function (i, item) {
                         $("#Destination").append(
-                            $('<option></option>').val(item.Id).text(item.Name));
+                            $('<option></option>').val(item.Id).text(item.Name)
+                        );
                     });
                 }
             });

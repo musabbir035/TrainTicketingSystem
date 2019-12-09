@@ -102,6 +102,7 @@ namespace TrainTicketingSystem.App.Web.Controllers
                     ErrorHandler handler = userService.UserRegister(user);
                     if (!handler.IsError)
                     {
+                        FormsAuthentication.SetAuthCookie(model.Email, false);
                         return RedirectToAction("Index");
                     }
                     else

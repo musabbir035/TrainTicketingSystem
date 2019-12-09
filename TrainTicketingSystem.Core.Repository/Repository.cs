@@ -1,56 +1,55 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using TrainTicketingSystem.Core.Repository.Interface;
 
 namespace TrainTicketingSystem.Core.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private DbContext context;
-
-        public Repository(DbContext context)
+        private readonly DbContext _context;
+        public Repository(DbContext _context)
         {
-            this.context = context;
+            this._context = _context;
         }
 
         public T Get(int id)
         {
-            return context.Set<T>().Find(id);
+            return _context.Set<T>().Find(id);
         }
 
         public IEnumerable<T> GetAll()
         {
-            return context.Set<T>();
+            return _context.Set<T>();
         }
 
         public void Insert(T entity)
         {
-            context.Set<T>().Add(entity);
+            _context.Add(entity);
         }
 
         public void InsertRange(IEnumerable<T> entities)
         {
-            context.Set<T>().AddRange(entities);
+            _context.AddRange(entities);
         }
 
         public void Update(T entity)
         {
-            context.Entry(entity).State = EntityState.Modified;
+            _context.Entry(entity).State = EntityState.Modified;
         }
 
         public void Delete(T entity)
         {
-            context.Set<T>().Remove(entity);
+            _context.Set<T>().Remove(entity);
         }
 
         public void DeleteRange(IEnumerable<T> entities)
         {
-            context.Set<T>().RemoveRange(entities);
+            _context.Set<T>().RemoveRange(entities);
         }
 
         public void Save()
         {
-            context.SaveChanges();
+            _context.SaveChanges();
         }
     }
 }

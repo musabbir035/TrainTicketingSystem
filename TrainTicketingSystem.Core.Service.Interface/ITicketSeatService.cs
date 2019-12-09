@@ -2,7 +2,7 @@
 
 namespace TrainTicketingSystem.Core.Service.Interface
 {
-    public interface IStationService : IService<Station>
+    public interface ITicketSeatService : IService<TicketSeat>
     {
     }
 }
